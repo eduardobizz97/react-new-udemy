@@ -5,6 +5,7 @@ import classes from './Person.module.css';
 
 const Person = (props) =>{
 
+    
     return ( 
         <div className={classes.Person}>
             <p onClick={props.click}>Hola {props.name}</p>

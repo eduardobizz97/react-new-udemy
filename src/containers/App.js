@@ -13,8 +13,8 @@ class App extends Component {
       { id: '1sad', name: "Vivi", edad: 20 },
       { id: 'asd', name: "Vivi", edad: 20 },
     ],
-    showPersons: false
-
+    showPersons: false,
+    showCockpit: true
   };
 
   nameChangeHandler = (event, id) => {
@@ -51,6 +51,14 @@ class App extends Component {
 
   };
 
+  toggleCockpitHandler = () => {
+    const doesShowCockpit = this.state.showCockpit;
+
+    this.setState({
+      showCockpit: !doesShowCockpit
+    });
+  }
+
 
   render() {
     let persons = null;
@@ -65,11 +73,11 @@ class App extends Component {
     return (
 
       <div className={classes.App}>
-
-        <Cockpit
+        <button onClick={this.toggleCockpitHandler}>remove cockpit</button>
+        {this.state.showCockpit ? <Cockpit
           showPersons={this.state.showPersons}
           persons={this.state.persons} 
-          clicked={this.togglePersonHandler}/>
+          clicked={this.togglePersonHandler}/> : null}
         {persons}
 
       </div>
