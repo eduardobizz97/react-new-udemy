@@ -6,7 +6,7 @@
 .pnp.js
 
 # Indeentation
-.eslintcache
+/.eslintcache
 
 # testing
 /coverage
