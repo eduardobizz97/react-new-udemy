@@ -35,12 +35,12 @@ const Cockpit = props => {
     return (
         <div className={classes.Cockpit}>
             <h1>Hi, im a react app</h1>
-            <p className={assignedClasses.join(' ')}>hi</p>
+            <p className={assignedClasses.join(' ')}>Estado</p>
             <button
                 className={btnClass}
                 // alt={this.state.showPersons}
                 onClick={props.clicked}>
-                boton
+                Click here!
             </button>
         </div>
     );

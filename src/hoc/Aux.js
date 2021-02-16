@@ -1,11 +1,3 @@
-import React from 'react';
-
-const Aux = props => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+const Aux = props => props.children;
 
 export default Aux
