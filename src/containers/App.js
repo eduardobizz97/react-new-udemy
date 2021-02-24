@@ -16,7 +16,8 @@ class App extends Component {
       { id: 'asd', name: "Maximilian", edad: 20 },
     ],
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter :0 
   };
 
   nameChangeHandler = (event, id) => {
@@ -34,7 +35,7 @@ class App extends Component {
     persons[personIndex] = person;
 
 
-    this.setState({ persons: persons });
+    this.setState({ persons: persons, changeCounter: this.state.changeCounter+1});
   };
 
   deletePersonHandler = (personIndex) => {
@@ -75,7 +76,7 @@ class App extends Component {
     return (
 
       <Aux classes={classes.App}>
-        <button onClick={this.toggleCockpitHandler}>remove cockpit</button>
+        <button onClick={this.toggleCockpitHandler}>Remove cockpit</button>
         {this.state.showCockpit ? 
         <Cockpit
           showPersons={this.state.showPersons}
