@@ -8,8 +8,18 @@ import WithClass from '../../../hoc/WithClass';
 
 
 import classes from './Person.module.css';
+import { ThemeConsumer } from 'styled-components';
 
 class Person extends Component {
+    constructor(props){
+        super(props);
+        this.inputElementRef = React.createRef();
+    }
+
+    componentDidMount(){
+        this.inputElementRef.current.focus();
+    };
+
 
     render() {
         return (
@@ -20,9 +30,7 @@ class Person extends Component {
                 <p>{this.props.children}</p>
                 <input
                     type="text"
-                    ref={(inputEl)=>{
-                        inputEl.focus();
-                    }}
+                    ref={this.inputElementRef}
                     onChange={this.props.changed}
                     value={this.props.name} />
             </Aux>
