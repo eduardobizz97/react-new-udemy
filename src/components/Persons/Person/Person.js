@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-
 import propType from "prop-types";
+
+import AuthContext from "../../../context/auth-context";
 
 import Aux from "../../../hoc/Aux";
 import WithClass from "../../../hoc/WithClass";
 
 import classes from "./Person.module.css";
-import { ThemeConsumer } from "styled-components";
 
 class Person extends Component {
   constructor(props) {
@@ -14,13 +14,25 @@ class Person extends Component {
     this.inputElementRef = React.createRef();
   }
 
+  static contextType = AuthContext;
+
   componentDidMount() {
     this.inputElementRef.current.focus();
-  }
+    console.log(this.context.authenticated);
+  };
+
+
+
+
 
   render() {
     return (
       <Aux>
+        <AuthContext.Consumer>
+          {(context) =>
+            context.authenticated ? <p>Authenticated!</p> : <p>Please log in</p>
+          }
+        </AuthContext.Consumer>
         <p onClick={this.props.click}>Name: {this.props.name}</p>
         <p>{this.props.children}</p>
         <input

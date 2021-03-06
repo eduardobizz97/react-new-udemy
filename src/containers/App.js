@@ -2,6 +2,7 @@ import { Component } from "react";
 import Cockpit from "../components/Cockpit/Cockpit";
 
 import Persons from "../components/Persons/Persons";
+import AuthContext from "../context/auth-context";
 import Aux from "../hoc/Aux";
 import WithClass from "../hoc/WithClass";
 
@@ -17,6 +18,7 @@ class App extends Component {
     showPersons: false,
     showCockpit: true,
     changeCounter: 0,
+    authenticated: false,
   };
 
   nameChangeHandler = (event, id) => {
@@ -60,6 +62,12 @@ class App extends Component {
     });
   };
 
+  loginHandler = () => {
+    this.setState({
+      authenticated: !this.state.authenticated,
+    });
+  };
+
   render() {
     let persons = null;
 
@@ -76,14 +84,21 @@ class App extends Component {
     return (
       <Aux classes={classes.App}>
         <button onClick={this.toggleCockpitHandler}>Remove cockpit</button>
-        {this.state.showCockpit ? (
-          <Cockpit
-            showPersons={this.state.showPersons}
-            personsLength={this.state.persons.length}
-            clicked={this.togglePersonHandler}
-          />
-        ) : null}
-        {persons}
+        <AuthContext.Provider
+          value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHandler,
+          }}
+        >
+          {this.state.showCockpit ? (
+            <Cockpit
+              showPersons={this.state.showPersons}
+              personsLength={this.state.persons.length}
+              clicked={this.togglePersonHandler}
+            />
+          ) : null}
+          {persons}
+        </AuthContext.Provider>
       </Aux>
     );
   }
